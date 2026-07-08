@@ -40,6 +40,13 @@ const NpseudoMemberMetaPanelPrewrap = ( { postType, postMeta, setPostMeta } ) =>
 			/>
 			</PanelRow>
 			<PanelRow>
+				<TextControl
+					label={ __( 'Instagram username', 'committee_teams' ) }
+					value={ postMeta.member_instagram}
+					onChange={ ( value ) => setPostMeta( { member_instagram: value } ) }
+				/>
+			</PanelRow>
+			<PanelRow>
 				<label htmlFor={"attachmentUploadButton"}>Manifesto</label></PanelRow>
 			<PanelRow>
 				<MediaUploadCheck>

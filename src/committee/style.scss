@@ -22,3 +22,7 @@
 	flex: 0 0 48%;
   }
 }
+
+.is-dark-theme .instagram-logo {
+  filter: invert(1);
+}
