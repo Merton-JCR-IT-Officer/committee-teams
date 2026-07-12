@@ -5,7 +5,7 @@
  * Description:       Add profiles for every member of committees.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.2.7
+ * Version:           0.3.0
  * Author:            Joe Bell
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,6 +18,7 @@ const NPSEUDO_VERSION = '0.2.6';
 const NPSEUDO_POST_TYPE_NAME = 'npseudo_com_member';
 const NPSEUDO_TEAM_CAT_NAME = 'npseudo_team';
 const NPSEUDO_TDOMAIN = 'committee_teams';
+const NPSEUDO_META_NAME = 'member_name';
 const NPSEUDO_META_PRONOUNS = 'member_pronouns';
 const NPSEUDO_META_EMAIL = 'member_email';
 const NPSEUDO_META_INSTAGRAM = 'member_instagram';
@@ -27,6 +28,12 @@ const NPSEUDO_META_ATTACHMENT = 'attachment';
 
 function npseudo_committee_teams_register_meta()
 {
+	register_post_meta(NPSEUDO_POST_TYPE_NAME, NPSEUDO_META_NAME, array(
+		'show_in_rest' => true,
+		'single' => true,
+		'type' => 'string',
+	));
+
 	register_post_meta(NPSEUDO_POST_TYPE_NAME, NPSEUDO_META_EMAIL, array(
 		'show_in_rest' => true,
 		'single' => true,
@@ -74,7 +81,15 @@ function npseudo_render_member_content($member_attrs)
 	if (isset($member_attrs['thumb'])) {
 		$str .= $member_attrs['thumb'];
 	}
-	$str .= sprintf('<div class="npseudo-card-body"><h5>%s</h5>', $member_attrs['title']);
+
+	$name = 'Vacant';
+
+	if ($member_attrs['name'] != '') {
+		$name = $member_attrs['name'];
+	}
+	
+	$str .= sprintf('<div class="npseudo-card-body"><h5>%s</h5>', $name);
+
 
 	if ($member_attrs['pronouns'] != '') {
 		$str .= sprintf('<span class="npseudo-pronouns">%s</span>', $member_attrs['pronouns']);
@@ -128,9 +143,10 @@ function npseudo_committee_teams_render_member($block_attributes, $content)
 		'email' => get_post_meta($post->ID, NPSEUDO_META_EMAIL, true),
 		'pronouns' => get_post_meta($post->ID, NPSEUDO_META_PRONOUNS, true),
 		'position' => get_post_meta($post->ID, NPSEUDO_META_POSITION, true),
-		'title' => get_the_title($post),
 		'content' => apply_filters('the_content', $post->post_content),
-		'instagram' => get_post_meta($post->ID, NPSEUDO_META_INSTAGRAM, true)
+		'instagram' => get_post_meta($post->ID, NPSEUDO_META_INSTAGRAM, true),
+		'name' => get_post_meta($post->ID, NPSEUDO_META_NAME, true),
+		'title' => get_the_title($post),
 	);
 
 	$manifesto_details = get_post_meta($post->ID, NPSEUDO_META_ATTACHMENT, true);
@@ -172,9 +188,10 @@ function npseudo_committee_teams_render_committee($block_attributes, $content)
 				'email' => get_post_meta($post->ID, NPSEUDO_META_EMAIL, true),
 				'pronouns' => get_post_meta($post->ID, NPSEUDO_META_PRONOUNS, true),
 				'position' => get_post_meta($post->ID, NPSEUDO_META_POSITION, true),
-				'title' => get_the_title($post),
 				'content' => apply_filters('the_content', $post->post_content),
-				'instagram' => get_post_meta($post->ID, NPSEUDO_META_INSTAGRAM, true)
+				'instagram' => get_post_meta($post->ID, NPSEUDO_META_INSTAGRAM, true),
+				'name' => get_post_meta($post->ID, NPSEUDO_META_NAME, true),
+				'title' => get_the_title($post),
 			);
 
 			$manifesto_details = get_post_meta($post->ID, NPSEUDO_META_ATTACHMENT, true);

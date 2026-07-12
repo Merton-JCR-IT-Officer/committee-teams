@@ -18,6 +18,13 @@ const NpseudoMemberMetaPanelPrewrap = ( { postType, postMeta, setPostMeta } ) =>
 		<PluginDocumentSettingPanel title={ __( 'Committee Member', 'committee_teams') } icon="edit" initialOpen="true">
 			<PanelRow>
 				<TextControl
+					label={ __( 'Name', 'committee_teams' ) }
+					value={ postMeta.name}
+					onChange={ ( value ) => setPostMeta( { member_name: value } ) }
+				/>
+			</PanelRow>
+			<PanelRow>
+				<TextControl
 					label={ __( 'Email Address', 'committee_teams' ) }
 					value={ postMeta.member_email}
 					onChange={ ( value ) => setPostMeta( { member_email: value } ) }
