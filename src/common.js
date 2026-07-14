@@ -56,7 +56,7 @@ function RawMember({member, children, ...props}, ref) {
 			{children}
 			{imageSourceUrl && <img src={imageSourceUrl} alt={featuredImageAlt}/>}
 			<div className={"npseudo-card-body"}>
-				<h5>{decodeEntities(member.title.rendered)}</h5>{member.meta.member_pronouns && <span className="npseudo-pronouns">({member.meta.member_pronouns})</span>}
+				<h5>{decodeEntities(member.meta.member_name || "Vacant")}</h5>{member.meta.member_pronouns && <span className="npseudo-pronouns">({member.meta.member_pronouns})</span>}
 				<h6>{member.meta.position}</h6>
 				{member.meta.member_email && <a href={"mailto:" + member.meta.member_email}>Email Me</a>}
 				{hasAttachment && <a href={member.meta.attachment.url}>Manifesto</a>}
