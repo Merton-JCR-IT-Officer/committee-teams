@@ -5,7 +5,7 @@
  * Description:       Add profiles for every member of committees.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.3.1
+ * Version:           0.3.2
  * Author:            Joe Bell
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@
  * @package           NpseudoCommitteeTeams
  */
 
-const NPSEUDO_VERSION = '0.2.6';
+const NPSEUDO_VERSION = '0.3.2';
 const NPSEUDO_POST_TYPE_NAME = 'npseudo_com_member';
 const NPSEUDO_TEAM_CAT_NAME = 'npseudo_team';
 const NPSEUDO_TDOMAIN = 'committee_teams';
@@ -252,7 +252,8 @@ function npseudo_committee_teams_blocks_init()
 				'editor',
 				'thumbnail',
 				'custom-fields',
-				'page-attributes'
+				'page-attributes',
+				'author',
 			),
 			'template' => array(
 				array(

@@ -19,7 +19,7 @@ const NpseudoMemberMetaPanelPrewrap = ( { postType, postMeta, setPostMeta } ) =>
 			<PanelRow>
 				<TextControl
 					label={ __( 'Name', 'committee_teams' ) }
-					value={ postMeta.name}
+					value={ postMeta.member_name}
 					onChange={ ( value ) => setPostMeta( { member_name: value } ) }
 				/>
 			</PanelRow>
