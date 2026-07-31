@@ -22,6 +22,7 @@ export default function Edit({attributes, setAttributes}) {
 	const {records: committee, hasResolved: committeeLoaded} = __experimentalUseEntityRecords('postType', 'npseudo_com_member', {
 		'npseudo_team': committee_id,
 		_embed: 'wp:featuredmedia',
+		context: 'view',
 		'orderby': 'menu_order',
 		'order': 'asc',
 	});

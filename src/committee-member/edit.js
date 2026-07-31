@@ -55,7 +55,7 @@ const MemberFetcher = forwardRef(({member_id, ...props}, ref) => {
 	const {member, hasResolved} = useSelect((select) => {
 		const {getEntityRecord, hasFinishedResolution} = select(coreDataStore);
 
-		const selectorArgs = ['postType', 'npseudo_com_member', member_id, {_embed: 'wp:featuredmedia'}];
+		const selectorArgs = ['postType', 'npseudo_com_member', member_id, {_embed: 'wp:featuredmedia', context: 'view'}];
 		return {
 			member: getEntityRecord(...selectorArgs),
 			hasResolved: hasFinishedResolution('getEntityRecord', selectorArgs),
